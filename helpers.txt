@@ -1,0 +1,66 @@
+sub helper_isoneof {
+    my ( $text, @list ) = @_;
+
+    my $errmsg = '';
+
+    foreach my $item (@list) {
+        if ( $text eq $item ) {
+    	    return $errmsg;
+        }
+    }
+
+    $errmsg = 'Not one of ' . join ( ', ', @list );
+
+    return $errmsg;
+}
+
+sub helper_integerrange {
+    my ( $text, $low, $high ) = @_;
+
+    my $errmsg = '';
+
+    if ( $text !~ m/^[\d]+$/ ) {
+        $errmsg = 'Not an integer';
+    }
+    elsif ( ( $text < $low ) or ( $text > $high ) ) {
+        $errmsg = "Out of range, $low to $high";
+    }
+
+    return $errmsg;
+}
+
+sub helper_regex {
+    my ( $text, $regex ) = @_;
+
+    my $errmsg = '';
+
+    if ( $text !~ m/$regex/ ) {
+        $errmsg = 'Does not match regex /' . $regex . '/';
+    }
+
+    return $errmsg;
+}
+
+sub helper_maxlength {
+    my ( $text, $length ) = @_;
+
+    my $errmsg = '';
+
+    if ( length($text) > $length ) {
+        $errmsg = "Length greater than $length";
+    }
+
+    return $errmsg;
+}
+
+sub helper_minlength {
+    my ( $text, $length ) = @_;
+
+    my $errmsg = '';
+
+    if ( length($text) < $length ) {
+        $errmsg = "Length less than $length";
+    }
+
+    return $errmsg;
+}

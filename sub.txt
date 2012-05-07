@@ -1,0 +1,47 @@
+$t{OPR}->{id} = sub {
+	my $text = shift;
+
+	return helper_regex($text, '^t\d{1,3}$');
+};
+
+$t{OPR}->{ttype} = sub {
+	my $text = shift;
+
+	return helper_isoneof($text, ('opr', 'mono', 'thes', 'quot'));
+};
+
+$t{graphic}->{type} = sub {
+	my $text = shift;
+
+	return helper_isoneof($text, ('display', 'inline'));
+};
+
+$t{se1}->{num} = sub {
+	my $text = shift;
+
+	return helper_integerrange($text, 1, 714);
+};
+
+$t{letter}->{value} = sub {
+	my $text = shift;
+
+	return helper_regex($text, '^[A-Z]{1}$');
+};
+
+$t{hw}->{hwtype} = sub {
+	my $text = shift;
+
+	return helper_isoneof($text, ('abbrev', 'affix', 'person', 'work', 'place', 'name', 'foreign', 'coname', 'essay', 'trade'));
+};
+
+$t{e}->{eid} = sub {
+	my $text = shift;
+
+	return helper_regex($text, '^e\d{1,6}$');
+};
+
+$t{xr}->{xid} = sub {
+	my $text = shift;
+
+	return helper_regex($text, '^e\d{1,6}$');
+};
